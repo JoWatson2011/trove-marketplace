@@ -1,3 +1,5 @@
+// import Link from "react-router-dom";
+
 function Header() {
   return (
     <div>
@@ -11,6 +13,7 @@ function Header() {
       </div>
       <div>
         <nav className="nav-bar">
+          {/* <Link to="/items" >All Items</Link> */}
           <p>All Items</p>
           <p>Items by Category</p>
           <p>List an Item</p>

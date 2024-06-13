@@ -1,6 +1,4 @@
-.app {
-  /* padding: 10px 10px 10px 10px; */
-}
+
 
 .title {
   border: 2px black solid;
@@ -18,4 +16,10 @@
   display: flex;
   justify-content: flex-end;
   font-size: 0.75rem;
+}
+
+.item-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
