@@ -23,3 +23,12 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.select-item-category {
+  display:flex;
+  justify-content: space-around;
+}
+
+.select-item-category input {
+  border: 2px black solid
+}

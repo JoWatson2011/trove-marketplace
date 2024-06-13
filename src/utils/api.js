@@ -6,7 +6,6 @@ const instance = axios.create({
 
 export const getRequest = (endpoint) => {
   return instance.get(endpoint).then(({ data }) => {
-    console.log(`GET ${endpoint}`);
     return data;
   });
 };
