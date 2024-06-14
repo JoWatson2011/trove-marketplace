@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import AllItems from "./AllItems";
 import ListItem from "./ListItem";
 import MyAccount from "./MyAccount";
+import Item from "./Item";
 import { useState } from "react";
 import Login from "./Login";
 
@@ -18,7 +19,17 @@ function MarketContainer() {
   const [categories, setCategories] = useState([]);
   return (
     <Routes>
-      <Route path="/items" element={<AllItems category={category} setCategory={setCategory} categories={categories} setCategories={setCategories}/>} />
+      <Route
+        path="/items"
+        element={
+          <AllItems
+            category={category}
+            setCategory={setCategory}
+            categories={categories}
+            setCategories={setCategories}
+          />
+        }
+      />
       <Route
         path="/login"
         element={
@@ -31,7 +42,13 @@ function MarketContainer() {
       />
       <Route
         path="/list-item"
-        element={isLoggedIn ? <ListItem categories={categories} setCategories={setCategories}/> : <Navigate to="/login" />}
+        element={
+          isLoggedIn ? (
+            <ListItem categories={categories} setCategories={setCategories} />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
       />
       <Route
         path="/my-account"
@@ -43,6 +60,7 @@ function MarketContainer() {
           )
         }
       />
+      <Route path="/items/:item_id" element=<Item/> />
     </Routes>
   );
 }
