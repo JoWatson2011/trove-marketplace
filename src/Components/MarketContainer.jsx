@@ -14,9 +14,11 @@ function MarketContainer() {
     items_in_basket: 0,
     items_ordered: 0,
   });
+  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState([]);
   return (
     <Routes>
-      <Route path="/items" element={<AllItems />} />
+      <Route path="/items" element={<AllItems category={category} setCategory={setCategory} categories={categories} setCategories={setCategories}/>} />
       <Route
         path="/login"
         element={
@@ -29,7 +31,7 @@ function MarketContainer() {
       />
       <Route
         path="/list-item"
-        element={isLoggedIn ? <ListItem /> : <Navigate to="/login" />}
+        element={isLoggedIn ? <ListItem categories={categories} setCategories={setCategories}/> : <Navigate to="/login" />}
       />
       <Route
         path="/my-account"

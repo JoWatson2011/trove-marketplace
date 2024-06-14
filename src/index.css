@@ -32,3 +32,8 @@
 .select-item-category input {
   border: 2px black solid
 }
+
+.list-item-form {
+  display:grid;
+  grid-row-gap: 10px
+}

@@ -4,7 +4,7 @@ import Header from "./Components/Header";
 import Home from "./Components/Home";
 import MarketContainer from "./Components/MarketContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./output.css";
+// import "./output.css";
 function App() {
   return (
     <BrowserRouter className="app">

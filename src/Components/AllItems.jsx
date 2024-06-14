@@ -5,10 +5,9 @@ import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
-function AllItems() {
+function AllItems({category, setCategory, categories, setCategories}) {
   const [items, setItems] = useState([]);
-  const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState([]);
+
 
   useEffect(() => {
     console.log("useEffect triggered!");
