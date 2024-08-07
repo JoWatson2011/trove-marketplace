@@ -10,7 +10,7 @@ function Header() {
           <Link to="/my-account">My Account</Link>
         </nav>
         <Link to="/" className=" active:text-red-900 ">
-          <h1>NC Marketplace</h1>
+          <h1>trove</h1>
         </Link>
       </div>
       <div>

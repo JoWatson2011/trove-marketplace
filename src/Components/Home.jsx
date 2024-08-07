@@ -1,5 +1,5 @@
 function Home() {
-  return <p>Welcome to NC Marketplace!</p>;
+  return <p>Welcome to trove marketplace!</p>;
 }
 
 export default Home;
