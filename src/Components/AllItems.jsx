@@ -40,7 +40,7 @@ function AllItems({ category, setCategory, categories, setCategories }) {
         })}
       </DropdownButton>
 
-      <div className="item-cards">
+      <div className="flex flex-wrap justify-around">
         {items.map((item) => {
           return <ItemCard item={item} key={item.id} />;
         })}

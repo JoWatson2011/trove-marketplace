@@ -34,7 +34,7 @@ function ListItem({ categories, setCategories }) {
 
   return (
     <div>
-      <form onSubmit={handleListSubmit} className="list-item-form">
+      <form onSubmit={handleListSubmit} className="grid gap-y-[10px]">
         <label>
           Item Name
           <input
