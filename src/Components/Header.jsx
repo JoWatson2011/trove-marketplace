@@ -9,23 +9,23 @@ function Header() {
         <Link to="/login">Login</Link>
         <Link to="/my-account">My Account</Link>
       </nav>
-      <Link to="/" className=" active:text-red-900 ">
-        <h1 className="text-[70px] m-4 italic font-bold text-right hover:not-italic">
+      <Link to="/">
+        <h1 className="text-[70px] m-4 italic font-bold text-right hover:not-italic active:text-lime-700">
           trove
         </h1>
       </Link>
       <nav className="flex justify-end space-x-10 m-3">
         <Link to="/items">
-          <p className="font-bold italic hover:not-italic focus:not-italic">
+          <p className="font-bold italic hover:not-italic hover:text-lime-700 focus:not-italic">
             BUY
           </p>
         </Link>
         <Link to="/list-item">
-          <p className="font-bold italic  hover:not-italic focus:not-italic">
+          <p className="font-bold italic  hover:not-italic hover:text-lime-700 focus:not-italic">
             SELL
           </p>
         </Link>
-        <ShoppingBasketIcon />
+        <ShoppingBasketIcon className="hover:text-lime-700" />
       </nav>
     </header>
   );
