@@ -5,20 +5,15 @@ import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
-function AllItems({category, setCategory, categories, setCategories}) {
+function AllItems({ category, setCategory, categories, setCategories }) {
   const [items, setItems] = useState([]);
 
-
   useEffect(() => {
-    console.log("useEffect triggered!");
-
-    const itemsUrl = category
-      ? `/api/items?category_name=${category}`
-      : "/api/items";
-    getRequest(itemsUrl).then(({ items }) => {
+    const itemsUrl = category ? `/products/category/${category}` : "/products";
+    getRequest(itemsUrl).then((items) => {
       setItems(items);
     });
-    getRequest("/api/categories").then(({ categories }) => {
+    getRequest("/products/categories").then((categories) => {
       setCategories(categories);
     });
   }, [category]);
@@ -36,10 +31,10 @@ function AllItems({category, setCategory, categories, setCategories}) {
         {categories.map((categoryOption) => {
           return (
             <Dropdown.Item
-              key={categoryOption.category_name}
-              eventKey={categoryOption.category_name}
+              key={categoryOption}
+              eventKey={categoryOption}
             >
-              {categoryOption.category_name}
+              {categoryOption.charAt(0).toUpperCase() + categoryOption.slice(1)}
             </Dropdown.Item>
           );
         })}
@@ -47,7 +42,7 @@ function AllItems({category, setCategory, categories, setCategories}) {
 
       <div className="item-cards">
         {items.map((item) => {
-          return <ItemCard item={item} key={item.item_id} />;
+          return <ItemCard item={item} key={item.id} />;
         })}
       </div>
     </div>
