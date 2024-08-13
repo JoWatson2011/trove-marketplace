@@ -1,13 +1,16 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://nc-marketplace-sem-1.onrender.com",
+  baseURL: "https://fakestoreapi.com",
 });
 
 export const getRequest = (endpoint, params = {}) => {
-  return instance.get(endpoint, params).then(({ data }) => {
-    return data;
-  });
+  return instance
+    .get(endpoint, params)
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => console.log(err));;
 };
 
 export const postRequest = (endpoint, body) => {
