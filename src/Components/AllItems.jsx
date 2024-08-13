@@ -9,12 +9,18 @@ function AllItems({ category, setCategory, categories, setCategories }) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    getRequest("/products/categories").then((categories) => {
+      const formattedCategories = categories.map(
+        (categoryOption) =>
+          categoryOption.charAt(0).toUpperCase() + categoryOption.slice(1)
+      );
+      setCategories(formattedCategories);
+    });
+  }, [])
+  useEffect(() => {
     const itemsUrl = category ? `/products/category/${category}` : "/products";
     getRequest(itemsUrl).then((items) => {
       setItems(items);
-    });
-    getRequest("/products/categories").then((categories) => {
-      setCategories(categories);
     });
   }, [category]);
 
@@ -24,9 +30,9 @@ function AllItems({ category, setCategory, categories, setCategories }) {
 
   return (
     <div>
-      <DropdownButton onSelect={handleChange} title="Select Category">
+      <DropdownButton onSelect={handleChange} title={category || "Select Category"}>
         <Dropdown.Item key="" eventKey="">
-          All
+          All Items
         </Dropdown.Item>
         {categories.map((categoryOption) => {
           return (
@@ -34,7 +40,7 @@ function AllItems({ category, setCategory, categories, setCategories }) {
               key={categoryOption}
               eventKey={categoryOption}
             >
-              {categoryOption.charAt(0).toUpperCase() + categoryOption.slice(1)}
+              {categoryOption}
             </Dropdown.Item>
           );
         })}
