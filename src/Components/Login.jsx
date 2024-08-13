@@ -1,57 +1,97 @@
 import { useState } from "react";
-import { getRequest } from "../utils/api";
+import { getRequest, postRequest } from "../utils/api";
+import ActionButton from "../Components/ActionButton.jsx";
 function Login({ setUser, setIsLoggedIn }) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  function handleSubmit(e) {
-    e.preventDefault();
+  const [logInError, setLogInError] = useState("");
 
-    getRequest(`/api/users/${usernameInput}`)
-      .then(({ user }) => {
+  function logInRequest(username, password) {
+    postRequest(`/auth/login`, {
+      username: username,
+      password: password,
+    })
+      .then(({token}) => {
+        console.log(token)
+        localStorage.setItem("token", token)
+
+        return getRequest("/users/1")
+      })
+      .then((user) => {
         setUser((currentUser) => {
           return {
             ...currentUser,
             username: user.username,
-            avatar_url: user.avatar_url,
-            kudos: user.kudos,
-            items_in_basket: user.items_in_basket,
-            items_ordered: user.items_ordered,
+            email: user.email,
+            address: user.address,
+            phone: user.phone
           };
         });
         setIsLoggedIn(true);
         setUsernameInput("");
-        // Redirect when isLoggedIn===true
+        setPasswordInput("");
       })
       .catch((err) => {
         console.log(err);
+        if (err.message === "Network Error") {
+          setLogInError("Network error. Please try again later.");
+        } else {
+          setLogInError(
+            "Please check username and password are entered correctly."
+          );
+        }
       });
   }
 
+  function handleGuestLogin(e) {
+    e.preventDefault();
+    setLogInError("");
+
+    logInRequest("johnd", "m38rmF$");
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setLogInError("");
+
+    logInRequest(usernameInput, passwordInput);
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col justify-items-center items-center mt-[100px] mx-auto w-[25%]"
-    >
-      <label htmlFor="username-input">Enter Username:</label>
-      <input
-        id="username-input"
-        onChange={(e) => {
-          setUsernameInput(e.target.value);
-        }}
-        className="border border-black rounded"
-        value={usernameInput}
-      />
-      <label htmlFor="password-input">Enter Password:</label>
-      <input
-        id="password-input"
-        onChange={(e) => {
-          setPasswordInput(e.target.value);
-        }}
-        className="border border-black rounded"
-        value={passwordInput}
-      />
-      <button>Login</button>
-    </form>
+    <main className="flex flex-col justify-center">
+      <div className="mx-auto my-2">
+        <ActionButton text={"Guest Log In"} eventHandler={handleGuestLogin} />
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col justify-items-center items-center mt-[100px] mx-auto w-[25%]"
+      >
+        <label htmlFor="username-input">Enter Username:</label>
+        <input
+          id="username-input"
+          onChange={(e) => {
+            setUsernameInput(e.target.value);
+          }}
+          className="border border-black rounded"
+          value={usernameInput}
+        />
+        <label htmlFor="password-input">Enter Password:</label>
+        <input
+          id="password-input"
+          onChange={(e) => {
+            setPasswordInput(e.target.value);
+          }}
+          className="border border-black rounded"
+          value={passwordInput}
+        />
+        <ActionButton text={"Log In"} />
+      </form>
+      {logInError ? (
+        <p className="text-center text-green-900 italic border border-green-700 rounded-full">
+          {logInError}
+        </p>
+      ) : null}
+    </main>
   );
 }
 
