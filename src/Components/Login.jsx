@@ -64,7 +64,7 @@ function Login({ setUser, setIsLoggedIn }) {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-items-center items-center mt-[100px] mx-auto w-[25%]"
+        className="flex flex-col justify-items-center items-center mt-[10px] border border-black rounded py-3 px-10 mx-auto w-[40%]"
       >
         <label htmlFor="username-input">Enter Username:</label>
         <input

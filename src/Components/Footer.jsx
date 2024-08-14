@@ -1,7 +1,9 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
+import { Divider } from "@mui/material";
 function Footer() {
   return (
-    <div className=" absolute bottom-0 flex align-center">
+    <div className=" bottom-0 flex align-center mt-20px">
+      <Divider/>
       <p className="text-slate-500">
         This website was built by Jo Watson as a portfolio project.{" "}
         <a
