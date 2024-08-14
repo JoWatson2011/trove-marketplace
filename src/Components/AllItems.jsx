@@ -2,8 +2,6 @@ import { getRequest } from "../utils/api";
 import ItemCard from "./ItemCard";
 import { useEffect } from "react";
 import { useState } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 
 function AllItems({ category, setCategory, categories, setCategories }) {
   const [items, setItems] = useState([]);
@@ -16,42 +14,44 @@ function AllItems({ category, setCategory, categories, setCategories }) {
       );
       setCategories(formattedCategories);
     });
-  }, [])
+  }, []);
   useEffect(() => {
-    const itemsUrl = category ? `/products/category/${category}` : "/products";
+    const itemsUrl = category
+      ? `/products/category/${category.toLowerCase()}`
+      : "/products";
     getRequest(itemsUrl).then((items) => {
       setItems(items);
     });
   }, [category]);
 
-  function handleChange(event) {
-    setCategory(event);
-  }
+
 
   return (
-    <div>
-      <DropdownButton onSelect={handleChange} title={category || "Select Category"}>
-        <Dropdown.Item key="" eventKey="">
-          All Items
-        </Dropdown.Item>
-        {categories.map((categoryOption) => {
-          return (
-            <Dropdown.Item
-              key={categoryOption}
-              eventKey={categoryOption}
-            >
-              {categoryOption}
-            </Dropdown.Item>
-          );
-        })}
-      </DropdownButton>
+    <>
+      <div className="flex justify-center">
+        <label className="font-bold italic px-2" htmlFor="select-category">
+          CATEGORY
+        </label>
+        <select
+          className="border border-black rounded-full p-1 mx-2"
+          id="select-category"
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+        >
+          <option value="">All items</option>
+          {categories.map((category) => {
+            return <option value={category}>{category}</option>;
+          })}
+        </select>
+      </div>
 
-      <div className="flex flex-wrap justify-around">
+      <div className="md:flex md:flex-wrap md:justify-around">
         {items.map((item) => {
           return <ItemCard item={item} key={item.id} />;
         })}
       </div>
-    </div>
+    </>
   );
 }
 
