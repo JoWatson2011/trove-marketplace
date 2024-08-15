@@ -60,7 +60,7 @@ function Login({ setUser, setIsLoggedIn }) {
   return (
     <main className="flex flex-col justify-center">
       <div className="mx-auto my-2">
-        <ActionButton text={"Guest Log In"} eventHandler={handleGuestLogin} />
+        <ActionButton text={"Guest Log In"} eventHandler={handleGuestLogin} cyId={"guest-log-in-button"} />
       </div>
       <form
         onSubmit={handleSubmit}
@@ -84,7 +84,7 @@ function Login({ setUser, setIsLoggedIn }) {
           className="border border-black rounded"
           value={passwordInput}
         />
-        <ActionButton text={"Log In"} />
+        <ActionButton text={"Log In"} cyId={"log-in-button"}/>
       </form>
       {logInError ? (
         <p className="text-center text-green-900 italic border border-green-700 rounded-full">
