@@ -39,7 +39,7 @@ function Login({ setUser, setIsLoggedIn }) {
       })
       .catch((err) => {
         console.log(err);
-        if (err.message === "Network Error") {
+        if (err.response.status === 500) {
           setLogInError("Network error. Please try again later.");
         } else {
           setLogInError(
