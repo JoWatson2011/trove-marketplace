@@ -10,10 +10,12 @@ function App() {
   return (
     <BrowserRouter className="app">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/*" element={<MarketContainer />} />
-      </Routes>
+      <div className = "relative">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<MarketContainer />} />
+        </Routes>
+      </div>
       <Footer />
     </BrowserRouter>
   );
