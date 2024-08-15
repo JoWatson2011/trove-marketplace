@@ -32,13 +32,8 @@ function MarketContainer() {
       />
       <Route
         path="/login"
-        element={
-          isLoggedIn ? (
-            <MyAccount />
-          ) : (
-            <Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
-          )
-        }
+        element=
+            {<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} />}
       />
       <Route
         path="/list-item"
