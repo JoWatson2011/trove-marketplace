@@ -1,21 +1,24 @@
 import { useState } from "react";
 import { getRequest, postRequest } from "../utils/api";
+import { useNavigate } from "react-router-dom";
 import ActionButton from "../Components/ActionButton.jsx";
 function Login({ setUser, setIsLoggedIn }) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [logInError, setLogInError] = useState("");
 
+  const navigate = useNavigate();
+
   function logInRequest(username, password) {
     postRequest(`/auth/login`, {
       username: username,
       password: password,
     })
-      .then(({token}) => {
-        console.log(token)
-        localStorage.setItem("token", token)
+      .then(({ token }) => {
+        console.log(token);
+        localStorage.setItem("token", token);
 
-        return getRequest("/users/1")
+        return getRequest("/users/1");
       })
       .then((user) => {
         setUser((currentUser) => {
@@ -24,12 +27,15 @@ function Login({ setUser, setIsLoggedIn }) {
             username: user.username,
             email: user.email,
             address: user.address,
-            phone: user.phone
+            phone: user.phone,
           };
         });
         setIsLoggedIn(true);
         setUsernameInput("");
         setPasswordInput("");
+      })
+      .then(() => {
+        navigate(-1);
       })
       .catch((err) => {
         console.log(err);
@@ -60,7 +66,11 @@ function Login({ setUser, setIsLoggedIn }) {
   return (
     <main className="flex flex-col justify-center">
       <div className="mx-auto my-2">
-        <ActionButton text={"Guest Log In"} eventHandler={handleGuestLogin} cyId={"guest-log-in-button"} />
+        <ActionButton
+          text={"Guest Log In"}
+          eventHandler={handleGuestLogin}
+          cyId={"guest-log-in-button"}
+        />
       </div>
       <form
         onSubmit={handleSubmit}
@@ -84,10 +94,13 @@ function Login({ setUser, setIsLoggedIn }) {
           className="border border-black rounded"
           value={passwordInput}
         />
-        <ActionButton text={"Log In"} cyId={"log-in-button"}/>
+        <ActionButton text={"Log In"} cyId={"log-in-button"} />
       </form>
       {logInError ? (
-        <p className="text-center text-green-900 italic border border-green-700 rounded-full">
+        <p
+          className="text-center text-green-900 italic border border-green-700 rounded-full"
+          data-cy="error-message"
+        >
           {logInError}
         </p>
       ) : null}
