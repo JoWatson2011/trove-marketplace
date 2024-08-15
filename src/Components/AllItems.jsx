@@ -46,7 +46,7 @@ function AllItems({ category, setCategory, categories, setCategories }) {
         </select>
       </div>
 
-      <div className="md:flex md:flex-wrap md:justify-around">
+      <div className="md:flex md:flex-wrap md:justify-evenly">
         {items.map((item) => {
           return <ItemCard item={item} key={item.id} />;
         })}
