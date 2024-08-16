@@ -6,8 +6,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 function Header() {
   return (
     <header className="my-2 md:mr-10 sm:max-md:sticky sm:max-md:top-0">
-      <div className="flex justify-between">
-        <p className="text-slate-500 text-sm">
+      <div className="md:flex md:justify-between space-y-6">
+        <p className="text-slate-500 text-sm ">
           This website was built by Jo Watson as a portfolio project.{" "}
           <a
             href="https://github.com/JoWatson2011/trove-marketplace"
