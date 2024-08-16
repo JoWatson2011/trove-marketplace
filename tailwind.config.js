@@ -22,6 +22,15 @@ export default {
         "half-right": "inset(0 0 50% 0%)",
       },
     },
+    keyframes: {
+      ticker: {
+        "0%": { transform: "translateX(0%)" },
+        "100%": { transform: "translateX(-100%)" },
+      },
+    },
+    animation: {
+      ticker: "ticker 120s linear infinite",
+    },
   },
   plugins: [
     function ({ addUtilities }) {
