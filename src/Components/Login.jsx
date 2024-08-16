@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { getRequest, postRequest } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import ActionButton from "../Components/ActionButton.jsx";
-function Login({ setUser, setIsLoggedIn }) {
+import { UserDispatchContext } from "../context/UserContext";
+
+function Login() {
+  const dispatch = useContext(UserDispatchContext);
+
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [logInError, setLogInError] = useState("");
@@ -21,16 +25,15 @@ function Login({ setUser, setIsLoggedIn }) {
         return getRequest("/users/1");
       })
       .then((user) => {
-        setUser((currentUser) => {
-          return {
-            ...currentUser,
-            username: user.username,
-            email: user.email,
-            address: user.address,
-            phone: user.phone,
-          };
-        });
-        setIsLoggedIn(true);
+        const userDetails = {
+          username: user.username,
+          email: user.email,
+          address: user.address,
+          phone: user.phone,
+        };
+
+        dispatch({ type: "login", data: userDetails });
+
         setUsernameInput("");
         setPasswordInput("");
       })

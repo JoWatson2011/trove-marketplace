@@ -1,48 +1,28 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
 import AllItems from "./AllItems";
 import ListItem from "./ListItem";
 import MyAccount from "./MyAccount";
 import Item from "./Item";
-import { useState } from "react";
 import Login from "./Login";
+import { UserContext } from "../context/UserContext";
 
 function MarketContainer() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
+  const { userDetails } = useContext(UserContext);
+  console.log(userDetails);
   return (
     <Routes>
-      <Route
-        path="/items"
-        element={
-          <AllItems />
-        }
-      />
-      <Route
-        path="/login"
-        element=
-            {<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} />}
-      />
+      <Route path="/items" element={<AllItems />} />
+      <Route path="/login" element={<Login />} />
       <Route
         path="/list-item"
-        element={
-          isLoggedIn ? (
-            <ListItem  />
-          ) : (
-            <Navigate to="/login" />
-          )
-        }
+        element={userDetails.username ? <ListItem /> : <Navigate to="/login" />}
       />
       <Route
         path="/my-account"
-        element={
-          isLoggedIn ? (
-            <MyAccount />
-          ) : (
-            <Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
-          )
-        }
+        element={userDetails.username ? <MyAccount /> : <Login />}
       />
-      <Route path="/items/:item_id" element={<Item/>} />
+      <Route path="/items/:item_id" element={<Item />} />
     </Routes>
   );
 }
