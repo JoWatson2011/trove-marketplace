@@ -8,26 +8,13 @@ import Login from "./Login";
 
 function MarketContainer() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({
-    username: "",
-    avatar_url: "",
-    kudos: 0,
-    items_in_basket: 0,
-    items_ordered: 0,
-  });
-  const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [user, setUser] = useState({});
   return (
     <Routes>
       <Route
         path="/items"
         element={
-          <AllItems
-            category={category}
-            setCategory={setCategory}
-            categories={categories}
-            setCategories={setCategories}
-          />
+          <AllItems />
         }
       />
       <Route
@@ -39,7 +26,7 @@ function MarketContainer() {
         path="/list-item"
         element={
           isLoggedIn ? (
-            <ListItem categories={categories} setCategories={setCategories} />
+            <ListItem  />
           ) : (
             <Navigate to="/login" />
           )
@@ -55,7 +42,7 @@ function MarketContainer() {
           )
         }
       />
-      <Route path="/items/:item_id" element=<Item/> />
+      <Route path="/items/:item_id" element={<Item/>} />
     </Routes>
   );
 }

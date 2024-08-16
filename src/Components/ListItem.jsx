@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getRequest, postRequest } from "../utils/api";
+import { CategoriesContext } from "../context/CategoriesContext";
 
-function ListItem({ categories, setCategories }) {
+function ListItem() {
   const [newItem, setNewItem] = useState({});
   const [isListed, setIsListed] = useState(false);
+  const { categories } = useContext(CategoriesContext);
 
   useEffect(() => {
     "useEffect triggered!";

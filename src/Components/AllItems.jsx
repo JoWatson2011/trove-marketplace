@@ -1,20 +1,13 @@
 import { getRequest } from "../utils/api";
 import ItemCard from "./ItemCard";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { CategoriesContext } from "../context/CategoriesContext";
 
-function AllItems({ category, setCategory, categories, setCategories }) {
+function AllItems() {
   const [items, setItems] = useState([]);
+  const { categories } = useContext(CategoriesContext);
+  const [category, setCategory] = useState("");
 
-  useEffect(() => {
-    getRequest("/products/categories").then((categories) => {
-      const formattedCategories = categories.map(
-        (categoryOption) =>
-          categoryOption.charAt(0).toUpperCase() + categoryOption.slice(1)
-      );
-      setCategories(formattedCategories);
-    });
-  }, []);
   useEffect(() => {
     const itemsUrl = category
       ? `/products/category/${category.toLowerCase()}`
@@ -23,8 +16,6 @@ function AllItems({ category, setCategory, categories, setCategories }) {
       setItems(items);
     });
   }, [category]);
-
-
 
   return (
     <>
