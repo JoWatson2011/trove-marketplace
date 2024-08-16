@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext } from "react";
-import { getRequest, postRequest } from "../utils/api";
+import { useState, useContext } from "react";
+import { postRequest } from "../utils/api";
 import { CategoriesContext } from "../context/CategoriesContext";
 
 function ListItem() {
@@ -7,22 +7,13 @@ function ListItem() {
   const [isListed, setIsListed] = useState(false);
   const { categories } = useContext(CategoriesContext);
 
-  useEffect(() => {
-    "useEffect triggered!";
-    getRequest("/api/categories").then(({ categories }) => {
-      setCategories(categories);
-    });
-  }, []);
-
   function handleListSubmit(e) {
     e.preventDefault();
-    const categoryNames = categories.map((category) => category.category_name);
+    const categoryNames = categories.map((category) => category);
 
     if (!categoryNames.includes(newItem.category)) {
       postRequest("/api/categories", { category_name: newItem.category });
     }
-
-    console.log(newItem);
 
     postRequest("/api/items", newItem)
       .then(() => {
@@ -100,8 +91,8 @@ function ListItem() {
             {categories.map((categoryOption) => {
               return (
                 <option
-                  value={categoryOption.category_name}
-                  key={categoryOption.category_name}
+                  value={categoryOption}
+                  key={categoryOption}
                 ></option>
               );
             })}
