@@ -30,6 +30,7 @@ function Header() {
               onClick={() => {
                 dispatch({ type: "logout" });
               }}
+              className="italic"
             >
               Logout
             </button>
