@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import GitHubIcon from "@mui/icons-material/GitHub";
-
+import { UserContext } from "../context/UserContext";
+import { UserDispatchContext } from "../context/UserContext";
 
 function Header() {
+  const { userDetails } = useContext(UserContext);
+  const dispatch = useContext(UserDispatchContext);
+
   return (
     <header className="my-2 md:mr-10 sm:max-md:sticky sm:max-md:top-0">
       <div className="md:flex md:justify-between space-y-6">
@@ -19,8 +24,21 @@ function Header() {
         </p>
         <nav className="flex justify-end text-[0.75rem] gap-x-5 text-slate-700 italic">
           <p>Create Account</p>
-          <Link to="/login">Login</Link>
-          <Link to="/my-account">My Account</Link>
+          {userDetails.username ? (
+            <button
+              data-cy="logout-button"
+              onClick={() => {
+                dispatch({ type: "logout" });
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+          {userDetails.username ? (
+            <Link to="/my-account">My Account</Link>
+          ) : null}
         </nav>
       </div>
       <Link to="/">
