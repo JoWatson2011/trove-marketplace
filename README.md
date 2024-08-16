@@ -1,8 +1,17 @@
-# React + Vite
+# trove marketplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+👷🏻‍♀️🔨 _This project is currently in progress!_
 
-Currently, two official plugins are available:
+Inspired by similar platforms such as [depop](https://www.depop.com/gb/) and [vinted](https://www.vinted.co.uk). Users can add their own products and buy items listed by other users.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+__Work In Progress__
+Front-end:
+1. View and add to basket
+2. View and change user details
+3. Modifications to styling so fully responsive
+4. Loading indicator when waiting on API
+5. Create a new user account
+
+Back-end:
+The back-end will be a RESTful API built with django and relying on an SQL database. 
+I am currently using the public api [http://fakestoreapi.com](http://fakestoreapi.com) as placeholder data on the front-end.
