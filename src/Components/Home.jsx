@@ -25,9 +25,12 @@ function Home() {
       <ul className="flex flex-wrap justify-around">
         {categories.map((c) => {
           return (
-            <button class="w-32 h-32 bg-lime-700 rounded-full overflow-visible flex items-center justify-center relative hover:bg-stripes hover:bg-green-800">
-              <div class="absolute inset-0 bg-stripes rounded-full clip-half-right "></div>
-              <div class="relative z-10 text-white text-center italic font-bold">
+            <button
+              className="w-32 h-32 bg-lime-700 rounded-full overflow-visible flex items-center justify-center relative hover:bg-stripes hover:bg-green-800"
+              key={c}
+            >
+              <div className="absolute inset-0 bg-stripes rounded-full clip-half-right "></div>
+              <div className="relative z-10 text-white text-center italic font-bold">
                 {c.toUpperCase()}
               </div>
             </button>
