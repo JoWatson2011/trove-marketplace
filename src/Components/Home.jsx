@@ -24,7 +24,7 @@ function Home() {
           </span>
         </h3>
       </div>
-      <ul className="flex flex-wrap justify-around">
+      <nav className="flex flex-wrap justify-around">
         {categories.map((c) => {
           return (
             <button
@@ -35,14 +35,13 @@ function Home() {
               }}
             >
               <div className="absolute inset-0 bg-stripes rounded-full clip-half-right "></div>
-              <div className="relative z-10 text-white text-center italic font-bold">
+              <p className="relative z-10 text-white text-center italic font-bold">
                 {c.toUpperCase()}
-              </div>
+              </p>
             </button>
           );
         })}
-      </ul>
-      <h3></h3>
+      </nav>
     </main>
   );
 }
