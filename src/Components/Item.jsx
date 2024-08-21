@@ -14,7 +14,7 @@ function Item() {
   }, [item_id]);
 
   return (
-    <div className="flex sm:max-md:flex-col md:mt-[50px] mb-[70px]">
+    <main className="flex sm:max-md:flex-col md:mt-[50px] mb-[70px]">
       <img
         src={itemViewed.image}
         className="max-w-[350px] md:ml-[150px] md:mr-[30px] place-self-center"
@@ -29,7 +29,7 @@ function Item() {
         </div>
         <p className="border border-black rounded-lg p-4">{itemViewed.description}</p>
       </div>
-    </div>
+    </main>
   );
 }
 

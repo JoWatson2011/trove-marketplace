@@ -10,7 +10,7 @@ function AllItems() {
   let [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState(searchParams.get("category"));
   const navigate = useNavigate();
-  console.log(searchParams);
+  
   useEffect(() => {
     const itemsUrl = category
       ? `/products/category/${category.toLowerCase()}`
@@ -21,7 +21,7 @@ function AllItems() {
   }, [category]);
 
   return (
-    <>
+    <main>
       <div className="flex justify-center">
         <label className="font-bold italic px-2" htmlFor="select-category">
           CATEGORY
@@ -49,7 +49,7 @@ function AllItems() {
           return <ItemCard item={item} key={item.id} />;
         })}
       </div>
-    </>
+    </main>
   );
 }
 
