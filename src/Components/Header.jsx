@@ -35,7 +35,7 @@ function Header() {
               Logout
             </button>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link to="/login" data-cy="login-nav">Login</Link>
           )}
           {userDetails.username ? (
             <Link to="/my-account">My Account</Link>
@@ -53,7 +53,7 @@ function Header() {
             BUY
           </p>
         </Link>
-        <Link to="/list-item">
+        <Link to="/list-item" data-cy="sell-nav">
           <p className="font-bold italic  hover:text-lime-700 hover:bg-slate-50 border border-gray-600 rounded-full p-2">
             SELL
           </p>
