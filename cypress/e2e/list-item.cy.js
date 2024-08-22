@@ -56,11 +56,14 @@ describe("List an item for sale", () => {
     cy.get('[data-cy="success-message"]').should("exist");
 
   });
-  // it("displays an error message if the form is empty on submit", () => {
-  //   cy.get("[data-cy='sell-nav']").click();
-  //   cy.get('[data-cy="guest-log-in-button"]').click();
+  it("displays an error message if there is a network error", () => {
+    mockResponseStatusCode("/products", 500, "POST");
 
-  //   cy.get('[data-cy="form-button"]').click();
-  //   cy.get('[data-cy="error-message"]').should("exist");
-  // });
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="success-message"]').should("not.exist");
+    cy.get('[data-cy="error-message"]').should("exist");
+  });
 });
