@@ -29,7 +29,7 @@ function ListItem() {
 
   return (
     <main className="flex flex-col place-items-center ">
-      <div className="border-b-4 border-r-4 border-t border-l border-lime-700 rounded-lg px-10 ">
+      <div className="border-b-4 border-r-4 border-t border-l border-lime-700 rounded-lg px-10 my-3">
         <div className="p-3 italic text-center">
           <p>list your item for sale by filling in the form below ✌️</p>
           <p>
@@ -104,12 +104,20 @@ function ListItem() {
               );
             })}
           </datalist>
-          <div className="place-self-center">
+          <div className="place-self-center" data-cy="form-button">
             <ActionButton text={"List Item"} />
           </div>
         </form>
-        {isListed ? <p className=" text-red-900">Item listed!</p> : null}
-        {error ? <p className="text-red-900">{error.message}</p> : null}
+        {isListed ? (
+          <p className=" text-red-900" data-cy="success-message">
+            Item listed!
+          </p>
+        ) : null}
+        {error ? (
+          <p className="text-red-900" data-cy="error-message">
+            {error.message}
+          </p>
+        ) : null}
       </div>
     </main>
   );
