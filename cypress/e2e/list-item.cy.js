@@ -138,5 +138,29 @@ describe("List an item for sale", () => {
     cy.get('[data-cy="success-message"]').should("not.exist");
     cy.get('[data-cy="error-message"]').should("exist");
   });
+  it("doesn't allow non-integer values to be inputted as the item price", () => {
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
 
+    cy.get("#item-price")
+      .type("ABC")
+      .should("have.value", "")
+      .type("5")
+      .should("have.value", "5");
+  });
+  it("only allows image urls to be submitted as the image input", () => {
+    mockResponseStatusCode("/products", 200, "POST");
+
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get("#item-name").type("My item for sale");
+    cy.get("#item-description").type("It's something you should buy.");
+    cy.get("#item-image").type("a random string");
+    cy.get("#item-price").type("5");
+    cy.get("#pick-category").type("A");
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="error-message"]').should("exist").should('be.visible');
+  });
 });

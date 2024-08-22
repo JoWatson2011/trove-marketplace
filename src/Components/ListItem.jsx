@@ -9,6 +9,8 @@ function ListItem() {
   const [error, setError] = useState("");
   const { categories } = useContext(CategoriesContext);
 
+  const imageUrlRegex = /\.(?:png|jpe?g)$/gi;
+
   function handleListSubmit(e) {
     e.preventDefault();
 
@@ -20,21 +22,25 @@ function ListItem() {
       !newItem.category
     ) {
       setError("Please fill in all fields!");
+      } else if (
+      !imageUrlRegex.test(newItem.image)
+      ){
+      setError("Please enter a valid image URL");
     } else {
-    // const categoryNames = categories.map((category) => category);
+      // const categoryNames = categories.map((category) => category);
 
-    // if (!categoryNames.includes(newItem.category)) {
-    //   postRequest("/api/categories", { category_name: newItem.category });
-    // }
+      // if (!categoryNames.includes(newItem.category)) {
+      //   postRequest("/api/categories", { category_name: newItem.category });
+      // }
 
-    postRequest("/products", newItem)
-      .then(() => {
-        setIsListed(true);
-      })
-      .catch((err) => setError(err));
+      postRequest("/products", newItem)
+        .then(() => {
+          setIsListed(true);
+        })
+        .catch((err) => setError(err.message));
 
-    // post request to /items endpoint
-    // 'item listed'
+      // post request to /items endpoint
+      // 'item listed'
     }
   }
 
@@ -126,7 +132,7 @@ function ListItem() {
         ) : null}
         {error ? (
           <p className="text-red-900" data-cy="error-message">
-            {error.message}
+            {error}
           </p>
         ) : null}
       </div>
