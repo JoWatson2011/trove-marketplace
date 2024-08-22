@@ -53,7 +53,7 @@ describe("List an item for sale", () => {
     cy.get("#pick-category").type("A");
 
     cy.get('[data-cy="form-button"]').click();
-    cy.get('[data-cy="success-message"]').should("exist");
+    cy.get('[data-cy="success-message"]').should("exist").should("be.visible");
   });
   it("displays an error message if there is a network error", () => {
     mockResponseStatusCode("/products", 500, "POST");
@@ -63,7 +63,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist");
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
   it("displays an error message if the form is empty on submitted", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -71,7 +71,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist");
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
   it("displays an error message if the item name input is empty on submitted", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -84,7 +84,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist");
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
   it("displays an error message if the item description input is empty on submitted", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -97,7 +97,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist");
+    cy.get('[data-cy="error-message"]').should("exist").should('be.visible');
   });
   it("displays an error message if the item image input is empty on submitted", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -110,7 +110,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist");
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
   it("displays an error message if the item price input is empty on submitted", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -123,7 +123,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist");
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
   it("displays an error message if the item category input is empty on submitted", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -136,7 +136,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist");
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");;
   });
   it("doesn't allow non-integer values to be inputted as the item price", () => {
     cy.get("[data-cy='sell-nav']").click();
