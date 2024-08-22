@@ -36,7 +36,7 @@ describe("List an item for sale", () => {
   });
   it("posts the new item if all the inputs are correctly filled", () => {
     mockResponseStatusCode("/products", 200, "POST");
-    
+
     cy.get("[data-cy='sell-nav']").click();
     cy.get('[data-cy="guest-log-in-button"]').click();
 
@@ -45,7 +45,7 @@ describe("List an item for sale", () => {
     cy.get("#item-image").should("have.value", "");
     cy.get("#item-price").should("have.value", "");
     cy.get("#pick-category").should("have.value", "");
-    
+
     cy.get("#item-name").type("My item for sale");
     cy.get("#item-description").type("It's something you should buy.");
     cy.get("#item-image").type("www.myimage.com/image.jpeg");
@@ -54,7 +54,6 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("exist");
-
   });
   it("displays an error message if there is a network error", () => {
     mockResponseStatusCode("/products", 500, "POST");
@@ -66,4 +65,78 @@ describe("List an item for sale", () => {
     cy.get('[data-cy="success-message"]').should("not.exist");
     cy.get('[data-cy="error-message"]').should("exist");
   });
+  it("displays an error message if the form is empty on submitted", () => {
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="success-message"]').should("not.exist");
+    cy.get('[data-cy="error-message"]').should("exist");
+  });
+  it("displays an error message if the item name input is empty on submitted", () => {
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get("#item-description").type("It's something you should buy.");
+    cy.get("#item-image").type("www.myimage.com/image.jpeg");
+    cy.get("#item-price").type("5");
+    cy.get("#pick-category").type("A");
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="success-message"]').should("not.exist");
+    cy.get('[data-cy="error-message"]').should("exist");
+  });
+  it("displays an error message if the item description input is empty on submitted", () => {
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get("#item-name").type("My item for sale");
+    cy.get("#item-image").type("www.myimage.com/image.jpeg");
+    cy.get("#item-price").type("5");
+    cy.get("#pick-category").type("A");
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="success-message"]').should("not.exist");
+    cy.get('[data-cy="error-message"]').should("exist");
+  });
+  it("displays an error message if the item image input is empty on submitted", () => {
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get("#item-name").type("My item for sale");
+    cy.get("#item-description").type("It's something you should buy.");
+    cy.get("#item-price").type("5");
+    cy.get("#pick-category").type("A");
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="success-message"]').should("not.exist");
+    cy.get('[data-cy="error-message"]').should("exist");
+  });
+  it("displays an error message if the item price input is empty on submitted", () => {
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get("#item-name").type("My item for sale");
+    cy.get("#item-description").type("It's something you should buy.");
+    cy.get("#item-image").type("www.myimage.com/image.jpeg");
+    cy.get("#pick-category").type("A");
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="success-message"]').should("not.exist");
+    cy.get('[data-cy="error-message"]').should("exist");
+  });
+  it("displays an error message if the item category input is empty on submitted", () => {
+    cy.get("[data-cy='sell-nav']").click();
+    cy.get('[data-cy="guest-log-in-button"]').click();
+
+    cy.get("#item-name").type("My item for sale");
+    cy.get("#item-description").type("It's something you should buy.");
+    cy.get("#item-image").type("www.myimage.com/image.jpeg");
+    cy.get("#item-price").type("5");
+
+    cy.get('[data-cy="form-button"]').click();
+    cy.get('[data-cy="success-message"]').should("not.exist");
+    cy.get('[data-cy="error-message"]').should("exist");
+  });
+
 });

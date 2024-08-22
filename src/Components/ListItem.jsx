@@ -11,7 +11,17 @@ function ListItem() {
 
   function handleListSubmit(e) {
     e.preventDefault();
-    const categoryNames = categories.map((category) => category);
+
+    if (
+      !newItem.title ||
+      !newItem.description ||
+      !newItem.image ||
+      !newItem.price ||
+      !newItem.category
+    ) {
+      setError("Please fill in all fields!");
+    } else {
+    // const categoryNames = categories.map((category) => category);
 
     // if (!categoryNames.includes(newItem.category)) {
     //   postRequest("/api/categories", { category_name: newItem.category });
@@ -25,6 +35,7 @@ function ListItem() {
 
     // post request to /items endpoint
     // 'item listed'
+    }
   }
 
   return (
