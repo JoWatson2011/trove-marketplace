@@ -8,7 +8,7 @@ function Home() {
   return (
     <main>
       <div className="relative overflow-hidden inline-block whitespace-nowrap animate-ticker my-4  space-x-3">
-        <h3 className="font-bold italic">
+        <h2 className="font-bold italic">
           SHOP BY CATEGORY{" "}
           <span aria-hidden="true" className="font-bold italic ">
             SHOP BY CATEGORY SHOP BY CATEGORY SHOP BY CATEGORY SHOP BY CATEGORY
@@ -22,7 +22,7 @@ function Home() {
             SHOP BY CATEGORY SHOP BY CATEGORY SHOP BY CATEGORY SHOP BY CATEGORY
             SHOP BY CATEGORY SHOP BY CATEGORY SHOP BY CATEGORY
           </span>
-        </h3>
+        </h2>
       </div>
       <nav className="flex flex-wrap justify-around">
         {categories.map((c) => {
