@@ -3,15 +3,17 @@
 ## 👷🏻‍♀️🔨 __This project is currently ongoing!__
 View the WIP here: [https://jowatson-portfolio-trove-marketplace.netlify.app](https://jowatson-portfolio-trove-marketplace.netlify.app)
 
-Inspired by similar platforms such as [depop](https://www.depop.com/gb/) and [vinted](https://www.vinted.co.uk). Users can add their own products and buy items listed by other users.
+Inspired by similar platforms such as [depop](https://www.depop.com/gb/) and [vinted](https://www.vinted.co.uk), however I am exploring options to search by image, and suggest similar items based on image classification.
 
 ## 📝 To-do 
 ### Front-end:
-1. View and add to basket
-2. View and change user details
-3. Modifications to styling so fully responsive
-4. Loading indicator when waiting on API
-5. Create a new user account
+[ ] Custom hook for responsive display
+[ ] Custom hook for for inputs
+[ ] Create a new user account
+[ ] User log in validation with [AuthO](https://auth0.com/blog/complete-guide-to-react-user-authentication/)
+[ ] Search bar
+[ ] Loading indicator when waiting on API
+[ ] View and add to basket
 
 ### Back-end:
 The back-end will be a RESTful API built with django and relying on an SQL database. 
