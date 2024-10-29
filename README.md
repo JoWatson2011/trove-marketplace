@@ -7,13 +7,13 @@ Inspired by similar platforms such as [depop](https://www.depop.com/gb/) and [vi
 
 ## 📝 To-do 
 ### Front-end:
-[ ] Custom hook for responsive display
-[ ] Custom hook for for inputs
-[ ] Create a new user account
-[ ] User log in validation with [AuthO](https://auth0.com/blog/complete-guide-to-react-user-authentication/)
-[ ] Search bar
-[ ] Loading indicator when waiting on API
-[ ] View and add to basket
+- [ ] Custom hook for responsive display
+- [ ] Custom hook for for inputs
+- [ ] Create a new user account
+- [ ] User log in validation with [AuthO](https://auth0.com/blog/complete-guide-to-react-user-authentication/)
+- [ ] Search bar
+- [ ] Loading indicator when waiting on API
+- [ ] View and add to basket
 
 ### Back-end:
 The back-end will be a RESTful API built with django and relying on an SQL database. 
