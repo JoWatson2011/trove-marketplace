@@ -7,7 +7,7 @@ Inspired by similar platforms such as [depop](https://www.depop.com/gb/) and [vi
 
 ## 📝 To-do 
 ### Front-end:
-[ ] Custom hook for responsive display
+[X] Custom hook for responsive display
 [ ] Custom hook for for inputs
 [ ] Create a new user account
 [ ] User log in validation with [AuthO](https://auth0.com/blog/complete-guide-to-react-user-authentication/)

@@ -1,4 +1,5 @@
 import { getRequest } from "../utils/api";
+import { useDisplaySize } from "../custom-hooks/useDisplaySize";
 import ItemCard from "./ItemCard";
 import { useEffect, useState, useContext } from "react";
 import { CategoriesContext } from "../context/CategoriesContext";
@@ -7,21 +8,23 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 function AllItems() {
   const [items, setItems] = useState([]);
   const { categories } = useContext(CategoriesContext);
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState(searchParams.get("category"));
   const navigate = useNavigate();
-  
+
+  const displaySize = useDisplaySize();
+
   useEffect(() => {
     const itemsUrl = category
       ? `/products/category/${category.toLowerCase()}`
-      : "/products";
+      : "/products";  
     getRequest(itemsUrl).then((items) => {
       setItems(items);
     });
   }, [category]);
 
   return (
-    <main>
+    <main >
       <div className="flex justify-center">
         <label className="font-bold italic px-2" htmlFor="select-category">
           CATEGORY
@@ -37,14 +40,24 @@ function AllItems() {
           <option value="">All items</option>
           {categories.map((categoryOption) => {
             if (categoryOption === category)
-              return <option value={categoryOption} selected>{categoryOption}</option>;
+              return (
+                <option value={categoryOption} selected>
+                  {categoryOption}
+                </option>
+              );
             else
               return <option value={categoryOption}>{categoryOption}</option>;
           })}
         </select>
       </div>
 
-      <div className="md:flex md:flex-wrap md:justify-evenly">
+      <div
+        className={`${
+          displaySize[0] < 800
+            ? "grid grid-cols-1 justify-items-center"
+            : "flex flex-wrap justify-evenly"
+        }`}
+      >
         {items.map((item) => {
           return <ItemCard item={item} key={item.id} />;
         })}
