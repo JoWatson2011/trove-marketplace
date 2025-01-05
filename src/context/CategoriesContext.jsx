@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useState, useEffect } from "react";
 import { getRequest } from "../utils/api";
 
@@ -14,7 +16,7 @@ export const CategoriesProvider = ({ children }) => {
       setCategories(formattedCategories);
     });
   }, []);
-  
+
   return (
     <CategoriesContext.Provider value={{ categories, setCategories }}>
       {children}

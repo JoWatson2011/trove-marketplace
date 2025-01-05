@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useReducer, useEffect } from "react";
 export const UserContext = createContext();
 export const UserDispatchContext = createContext();
