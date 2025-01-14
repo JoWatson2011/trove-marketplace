@@ -1,16 +1,17 @@
+"use client"
 import { getRequest } from "../utils/api";
 import { useDisplaySize } from "../custom-hooks/useDisplaySize";
 import ItemCard from "./ItemCard";
 import { useEffect, useState, useContext } from "react";
 import { CategoriesContext } from "../context/CategoriesContext";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useRouter, useSearchParams } from "next/navigation";
+
 
 function AllItems() {
   const [items, setItems] = useState([]);
   const { categories } = useContext(CategoriesContext);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [category, setCategory] = useState(searchParams.get("category"));
-  const navigate = useNavigate();
+  const [category, setCategory] = useState(useSearchParams().get("category"));
+  const router = useRouter();
 
   const displaySize = useDisplaySize();
 
@@ -34,19 +35,23 @@ function AllItems() {
           id="select-category"
           onChange={(e) => {
             setCategory(e.target.value);
-            navigate(`/items?category=${e.target.value}`);
+            router.push(`/items?category=${e.target.value}`);
           }}
         >
           <option value="">All items</option>
           {categories.map((categoryOption) => {
             if (categoryOption === category)
               return (
-                <option value={categoryOption} selected>
+                <option value={categoryOption} defaultValue = {categoryOption} key = {categoryOption}>
                   {categoryOption}
                 </option>
               );
             else
-              return <option value={categoryOption}>{categoryOption}</option>;
+              return (
+                <option value={categoryOption} key={categoryOption}>
+                  {categoryOption}
+                </option>
+              );
           })}
         </select>
       </div>
@@ -59,7 +64,7 @@ function AllItems() {
         }`}
       >
         {items.map((item) => {
-          return <ItemCard item={item} key={item.id} />;
+          return <ItemCard item={item} key={item.id}/>;
         })}
       </div>
     </main>

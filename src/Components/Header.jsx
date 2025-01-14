@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client"
+import Link from "next/link";
 import { useContext } from "react";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -37,26 +38,26 @@ function Header() {
               Logout
             </button>
           ) : (
-            <Link to="/login" data-cy="login-nav">
+            <Link href="/login" data-cy="login-nav">
               Login
             </Link>
           )}
           {userDetails.username ? (
-            <Link to="/my-account">My Account</Link>
+            <Link href="/my-account">My Account</Link>
           ) : null}
         </nav>
-        <Link to="/">
+        <Link href="/">
           <h1 className="text-[70px] italic font-bold text-right hover:not-italic active:text-lime-700">
             trove
           </h1>
         </Link>
         <nav className="flex justify-end space-x-5 my-3">
-          <Link to="/items">
+          <Link href="/items">
             <button className="font-bold italic hover:text-lime-700 hover:bg-slate-50 focus:not-italic  border border-gray-600 rounded-full p-2">
               BUY
             </button>
           </Link>
-          <Link to="/list-item" data-cy="sell-nav">
+          <Link href="/list-item" data-cy="sell-nav">
             <button className="font-bold italic  hover:text-lime-700 hover:bg-slate-50 border border-gray-600 rounded-full p-2">
               SELL
             </button>

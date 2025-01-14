@@ -1,6 +1,8 @@
+"use client";
+
 import { useState, useContext } from "react";
 import { getRequest, postRequest } from "../utils/api";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import ActionButton from "../Components/ActionButton.jsx";
 import { UserDispatchContext } from "../context/UserContext";
 
@@ -11,7 +13,7 @@ function Login() {
   const [passwordInput, setPasswordInput] = useState("");
   const [logInError, setLogInError] = useState("");
 
-  const navigate = useNavigate();
+  const router = useRouter();
 
   function logInRequest(username, password) {
     postRequest(`/auth/login`, {
@@ -38,7 +40,7 @@ function Login() {
         setPasswordInput("");
       })
       .then(() => {
-        navigate(-1);
+        router.back();
       })
       .catch((err) => {
         console.log(err);

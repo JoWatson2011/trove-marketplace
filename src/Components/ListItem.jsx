@@ -1,3 +1,4 @@
+"use client"
 import { useState, useContext } from "react";
 import { postRequest } from "../utils/api";
 import { CategoriesContext } from "../context/CategoriesContext";
