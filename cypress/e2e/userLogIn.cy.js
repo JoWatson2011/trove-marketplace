@@ -2,7 +2,7 @@ import { mockResponseStatusCode } from "./utils";
 
 describe("Log In", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:5173/");
+    cy.visit("http://localhost:3000/");
   });
   it("logs in as a guest user", () => {
     mockResponseStatusCode("/auth/login", 200, "POST");
