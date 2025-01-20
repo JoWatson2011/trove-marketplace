@@ -1,15 +1,20 @@
-"use client"
+"use client";
 import Link from "next/link";
-import { useContext } from "react";
+import { useState, useEffect } from "react";
+
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { UserContext } from "../context/UserContext";
-import { UserDispatchContext } from "../context/UserContext";
 import { useDisplaySize } from "../custom-hooks/useDisplaySize";
+import { getToken, setUser, setToken } from "../app/actions";
 
 function Header() {
-  const { userDetails } = useContext(UserContext);
-  const dispatch = useContext(UserDispatchContext);
+  const [userId, setUserId] = useState(undefined);
+
+  useEffect(() => {
+    getToken().then((user) => {
+      setUserId(user);
+    });
+  }, []);
   const displaySize = useDisplaySize();
   // ${displaySize < 800 ? "sticky" : "mr-[50px]"}
   return (
@@ -27,11 +32,13 @@ function Header() {
       <div className=" px-5">
         <nav className="flex justify-end text-[0.75rem] gap-x-5 text-slate-700 italic">
           <p>Create Account</p>
-          {userDetails.username ? (
+          {userId ? (
             <button
               data-cy="logout-button"
               onClick={() => {
-                dispatch({ type: "logout" });
+                setUserId(undefined);
+                setUser("");
+                setToken("");
               }}
               className="italic"
             >
@@ -42,9 +49,7 @@ function Header() {
               Login
             </Link>
           )}
-          {userDetails.username ? (
-            <Link href="/my-account">My Account</Link>
-          ) : null}
+          {userId ? <Link href="/my-account">My Account</Link> : null}
         </nav>
         <Link href="/">
           <h1 className="text-[70px] italic font-bold text-right hover:not-italic active:text-lime-700">

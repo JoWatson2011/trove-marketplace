@@ -4,10 +4,9 @@ import { useState, useContext } from "react";
 import { getRequest, postRequest } from "../utils/api";
 import { useRouter } from "next/navigation";
 import ActionButton from "../Components/ActionButton.jsx";
-import { UserDispatchContext } from "../context/UserContext";
+import { setToken, setUser } from "../app/actions";
 
 function Login() {
-  const dispatch = useContext(UserDispatchContext);
 
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -21,21 +20,12 @@ function Login() {
       password: password,
     })
       .then(({ token }) => {
-        console.log(token);
-        localStorage.setItem("token", token);
+        setToken(token);
 
         return getRequest("/users/1");
       })
       .then((user) => {
-        const userDetails = {
-          username: user.username,
-          email: user.email,
-          address: user.address,
-          phone: user.phone,
-        };
-
-        dispatch({ type: "login", data: userDetails });
-
+        setUser(user.id);
         setUsernameInput("");
         setPasswordInput("");
       })
@@ -43,7 +33,6 @@ function Login() {
         router.back();
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 500) {
           setLogInError("Network error. Please try again later.");
         } else {
