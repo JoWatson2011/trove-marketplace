@@ -1,18 +1,17 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { getRequest, postRequest } from "../utils/api";
 
 export async function setToken(token: string) {
   const cookieStore = await cookies();
 
   cookieStore.set("token", token);
-  console.log(cookieStore.getAll());
 }
 
 export async function setUser(userId: number) {
   const cookieStore = await cookies();
   cookieStore.set("userId", `${userId}`);
-  console.log(cookieStore.getAll());
 }
 
 export async function getToken() {
@@ -27,4 +26,19 @@ export async function getUser() {
   const userId = cookieStore.get("userId")?.value;
 
   return userId;
+}
+
+export async function logInRequest(
+  username: string,
+  password: string
+) {
+  const token = await postRequest(`/auth/login`, {
+    username: username,
+    password: password,
+  });
+  setToken(token);
+
+  const user = await getRequest("/users/1");
+
+  setUser(user);
 }
