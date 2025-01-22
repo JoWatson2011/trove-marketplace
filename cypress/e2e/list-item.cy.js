@@ -22,7 +22,7 @@ describe("List an item for sale", () => {
     });
   });
   beforeEach(() => {
-    cy.visit("http://localhost:5173/");
+    cy.visit("http://localhost:3000/");
   });
 
   it("only allows access to the list item page if the user is logged in", () => {
@@ -97,7 +97,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist").should('be.visible');
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
   it("displays an error message if the item image input is empty on submitted", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -136,7 +136,7 @@ describe("List an item for sale", () => {
 
     cy.get('[data-cy="form-button"]').click();
     cy.get('[data-cy="success-message"]').should("not.exist");
-    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");;
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
   it("doesn't allow non-integer values to be inputted as the item price", () => {
     cy.get("[data-cy='sell-nav']").click();
@@ -161,6 +161,6 @@ describe("List an item for sale", () => {
     cy.get("#pick-category").type("A");
 
     cy.get('[data-cy="form-button"]').click();
-    cy.get('[data-cy="error-message"]').should("exist").should('be.visible');
+    cy.get('[data-cy="error-message"]').should("exist").should("be.visible");
   });
 });

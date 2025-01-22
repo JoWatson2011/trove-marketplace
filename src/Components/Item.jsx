@@ -1,11 +1,12 @@
-import { useParams } from "react-router-dom";
+"use client";
+import { useParams } from "next/navigation";
 import { getRequest } from "../utils/api";
 import { useEffect, useState } from "react";
 import ActionButton from "./ActionButton";
 import { useDisplaySize } from "../custom-hooks/useDisplaySize";
 
 function Item() {
-  const { item_id } = useParams();
+  const { slug: item_id } = useParams();
   const [itemViewed, setItemViewed] = useState({});
 
   const displaySize = useDisplaySize();

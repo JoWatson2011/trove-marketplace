@@ -1,8 +1,9 @@
+
 import { useState, useEffect } from "react";
 
-export function useDisplaySize() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+export async function useDisplaySize() {
+  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
 
   useEffect(() => {
     function handleWidth() {
