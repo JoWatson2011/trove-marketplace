@@ -1,56 +1,30 @@
 "use client";
 
-import { useState, useContext } from "react";
-import { getRequest, postRequest } from "../utils/api";
-import { useRouter } from "next/navigation";
-import ActionButton from "../Components/ActionButton.jsx";
-import { setToken, setUser } from "../app/actions";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import ActionButton from "./ActionButton.jsx";
+import { logInRequest } from "../app/actions.ts";
 
 function Login() {
-
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [logInError, setLogInError] = useState("");
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  function logInRequest(username, password) {
-    postRequest(`/auth/login`, {
-      username: username,
-      password: password,
-    })
-      .then(({ token }) => {
-        setToken(token);
-
-        return getRequest("/users/1");
-      })
-      .then((user) => {
-        setUser(user.id);
-        setUsernameInput("");
-        setPasswordInput("");
-      })
-      .then(() => {
-        router.back();
-      })
-      .catch((err) => {
-        if (err.response.status === 500) {
-          setLogInError("Network error. Please try again later.");
-        } else {
-          setLogInError(
-            "Please check username and password are entered correctly."
-          );
-        }
-      });
-  }
-
-  function handleGuestLogin(e) {
+  function handleGuestLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLogInError("");
 
-    logInRequest("johnd", "m38rmF$");
+    logInRequest("johnd", "m38rmF$").then(() => {
+      const callbackUrl = searchParams.get("callbackUrl") || "/";
+      console.log(searchParams, callbackUrl);
+      router.push(callbackUrl);
+    });
   }
 
-  function handleSubmit(e) {
+  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLogInError("");
 
@@ -67,7 +41,7 @@ function Login() {
         />
       </div>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLogin}
         className="flex flex-col justify-items-center items-center mt-[10px] border border-black rounded py-3 px-10 mx-auto w-[40%]"
       >
         <label htmlFor="username-input">Enter Username:</label>
@@ -88,7 +62,11 @@ function Login() {
           className="border border-black rounded"
           value={passwordInput}
         />
-        <ActionButton text={"Log In"} cyId={"log-in-button"} />
+        <ActionButton
+          text={"Log In"}
+          eventHandler={handleLogin}
+          cyId={"log-in-button"}
+        />
       </form>
       {logInError ? (
         <p
