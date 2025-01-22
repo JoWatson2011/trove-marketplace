@@ -19,7 +19,6 @@ function Login() {
 
     logInRequest("johnd", "m38rmF$").then(() => {
       const callbackUrl = searchParams.get("callbackUrl") || "/";
-      console.log(searchParams, callbackUrl);
       router.push(callbackUrl);
     });
   }
