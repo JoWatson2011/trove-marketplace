@@ -1,23 +1,14 @@
 import { useContext } from "react";
-import { useRouter } from "next/navigation";
 import { CategoriesContext } from "../context/CategoriesContext";
 function Home() {
   const { categories } = useContext(CategoriesContext);
-  const router = useRouter();
 
   return (
     <main>
-      <div className="relative text-clip overflow-hidden inline-block whitespace-nowrap animate-ticker my-4  space-x-3 ">
-        <h2 className="font-bold italic">
-          SHOP BY CATEGORY{" "}
-          <span aria-hidden="true" className="font-bold italic ">
-            {Array(300)
-              .fill("")
-              .map(() => "SHOP BY CATEGORY")
-              .join(" ")}
-          </span>
-        </h2>
-      </div>
+      <h2 className="mx-10 my-5  font-bold italic">
+        SHOP BY CATEGORY
+      </h2>
+
       <nav className="flex flex-wrap justify-around">
         {categories.map((c) => {
           return (
