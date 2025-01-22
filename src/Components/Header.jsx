@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext.tsx";
 
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -8,13 +9,8 @@ import { useDisplaySize } from "../custom-hooks/useDisplaySize";
 import { getToken, setUser, setToken } from "../app/actions";
 
 function Header() {
-  const [userId, setUserId] = useState(undefined);
+  const authorised = useContext(AuthContext);
 
-  useEffect(() => {
-    getToken().then((user) => {
-      setUserId(user);
-    });
-  }, []);
   const displaySize = useDisplaySize();
   // ${displaySize < 800 ? "sticky" : "mr-[50px]"}
   return (
@@ -32,11 +28,11 @@ function Header() {
       <div className=" px-5">
         <nav className="flex justify-end text-[0.75rem] gap-x-5 text-slate-700 italic">
           <p>Create Account</p>
-          {userId ? (
+          {authorised.authorised ? (
             <button
               data-cy="logout-button"
               onClick={() => {
-                setUserId(undefined);
+                authorised.setIsAuthorised(false);
                 setUser("");
                 setToken("");
               }}
@@ -49,7 +45,9 @@ function Header() {
               Login
             </Link>
           )}
-          {userId ? <Link href="/my-account">My Account</Link> : null}
+          {authorised.authorised ? (
+            <Link href="/my-account">My Account</Link>
+          ) : null}
         </nav>
         <Link href="/">
           <h1 className="text-[70px] italic font-bold text-right hover:not-italic active:text-lime-700">

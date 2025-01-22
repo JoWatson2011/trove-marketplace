@@ -1,6 +1,6 @@
-
 import type { Metadata } from "next";
 import { CategoriesProvider } from "../context/CategoriesContext.jsx";
+import { AuthProvider } from "../context/AuthContext.tsx";
 import Header from "../Components/Header.jsx";
 
 export const metadata: Metadata = {
@@ -17,10 +17,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div id="root">
+          <AuthProvider>
             <CategoriesProvider>
-              <Header/>
+              <Header />
               {children}
-              </CategoriesProvider>
+            </CategoriesProvider>
+          </AuthProvider>
         </div>
       </body>
     </html>

@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ActionButton from "./ActionButton.jsx";
 import { logInRequest } from "../app/actions.ts";
+import { AuthContext } from "../context/AuthContext.tsx";
 
 function Login() {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [logInError, setLogInError] = useState("");
+
+  const authorised = useContext(AuthContext);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -17,17 +20,30 @@ function Login() {
     e.preventDefault();
     setLogInError("");
 
-    logInRequest("johnd", "m38rmF$").then(() => {
-      const callbackUrl = searchParams.get("callbackUrl") || "/";
-      router.push(callbackUrl);
-    });
+    logInRequest("johnd", "m38rmF$")
+      .then(() => {
+        authorised?.setIsAuthorised(true);
+        const callbackUrl = searchParams.get("callbackUrl") || "/";
+        router.push(callbackUrl);
+      })
+      .catch(() => {
+        setLogInError("Login error. Please try again later.");
+      });
   }
 
   function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLogInError("");
 
-    logInRequest(usernameInput, passwordInput);
+    logInRequest(usernameInput, passwordInput)
+      .then(() => {
+        authorised?.setIsAuthorised(true);
+        const callbackUrl = searchParams.get("callbackUrl") || "/";
+        router.push(callbackUrl);
+      })
+      .catch(() => {
+        setLogInError("Login error. Please try again later.");
+      });
   }
 
   return (
