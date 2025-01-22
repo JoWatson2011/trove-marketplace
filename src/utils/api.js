@@ -5,12 +5,7 @@ const instance = axios.create({
 });
 
 export const getRequest = (endpoint, params = {}) => {
-  return instance
-    .get(endpoint, params)
-    .then(({ data }) => {
-      return data;
-    })
-    .catch((err) => console.log(err));;
+  return instance.get(endpoint, params).then(({ data }) => {    return data;  });
 };
 
 export const postRequest = (endpoint, body) => {
