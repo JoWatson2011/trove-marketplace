@@ -1,16 +1,22 @@
 "use client";
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { getRequest } from "../utils/api";
 
-export const CategoriesContext = createContext();
+type CategoryContextType = {
+  categories: string[];
+  setCategories: React.Dispatch<React.SetStateAction<string[]>>;
+};
+export const CategoriesContext = createContext<CategoryContextType | null>(
+  null
+);
 
-export const CategoriesProvider = ({ children }) => {
-  const [categories, setCategories] = useState([]);
+export const CategoriesProvider = ({ children }: { children: ReactNode }) => {
+  const [categories, setCategories] = useState([""]);
   useEffect(() => {
     getRequest("/products/categories").then((categories) => {
       const formattedCategories = categories.map(
-        (categoryOption) =>
+        (categoryOption: string) =>
           categoryOption.charAt(0).toUpperCase() + categoryOption.slice(1)
       );
       setCategories(formattedCategories);

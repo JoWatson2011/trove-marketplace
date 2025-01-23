@@ -2,7 +2,7 @@
 
 import { useContext, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import ActionButton from "./ActionButton.jsx";
+import ActionButton from "./ActionButton.tsx";
 import { logInRequest } from "../app/actions.ts";
 import { AuthContext } from "../context/AuthContext.tsx";
 

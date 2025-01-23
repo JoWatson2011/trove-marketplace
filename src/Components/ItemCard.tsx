@@ -1,7 +1,17 @@
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import Link from "next/link";
 
-function ItemCard({ item }) {
+function ItemCard({
+  item,
+}: {
+  item: {
+    id: string;
+    title: string;
+    image: string;
+    category: string;
+    price: number;
+  };
+}) {
   return (
     <div className="flex flex-col justify-center mx-1 my-1 w-[286px] h-[300px]  p-3">
       <Link href={`/items/${item.id}`}>

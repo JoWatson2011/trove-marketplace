@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { CategoriesContext } from "../context/CategoriesContext";
+import { useRouter } from "next/router";
 function Home() {
   const { categories } = useContext(CategoriesContext);
 
+  const router = useRouter();
   return (
     <main>
-      <h2 className="mx-10 my-5  font-bold italic">
-        SHOP BY CATEGORY
-      </h2>
+      <h2 className="mx-10 my-5  font-bold italic">SHOP BY CATEGORY</h2>
 
       <nav className="flex flex-wrap justify-around">
         {categories.map((c) => {

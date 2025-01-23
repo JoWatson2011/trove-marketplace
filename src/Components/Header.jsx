@@ -5,14 +5,11 @@ import { AuthContext } from "../context/AuthContext.tsx";
 
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { useDisplaySize } from "../custom-hooks/useDisplaySize";
-import { getToken, setUser, setToken } from "../app/actions";
+import { setUser, setToken } from "../app/actions";
 
 function Header() {
   const authorised = useContext(AuthContext);
 
-  const displaySize = useDisplaySize();
-  // ${displaySize < 800 ? "sticky" : "mr-[50px]"}
   return (
     <header>
       <p className="text-slate-500 text-sm ">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CategoriesProvider } from "../context/CategoriesContext.jsx";
+import { CategoriesProvider } from "../context/CategoriesContext";
 import { AuthProvider } from "../context/AuthContext.tsx";
 import Header from "../Components/Header.jsx";
 

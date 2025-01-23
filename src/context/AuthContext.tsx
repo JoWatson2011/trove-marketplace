@@ -3,8 +3,8 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 import { getToken } from "../app/actions";
 
 type AuthContextType = {
-  authorised: Boolean;
-  setIsAuthorised: Function;
+  authorised: boolean;
+  setIsAuthorised: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
