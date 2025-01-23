@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export async function useDisplaySize() {
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(0);
+export function useDisplaySize(): [number | null, number | null] {
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  const [windowHeight, setWindowHeight] = useState<number | null>(null);
 
   useEffect(() => {
     function handleWidth() {
@@ -17,8 +17,8 @@ export async function useDisplaySize() {
     window.addEventListener("resize", handleHeight);
 
     return () => {
-      window.removeEventListener(window.visualViewport.width, handleWidth);
-      window.removeEventListener(window.visualViewport.height, handleHeight);
+      window.removeEventListener("resize", handleWidth);
+      window.removeEventListener("resize", handleHeight);
     };
   });
 

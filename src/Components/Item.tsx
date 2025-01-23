@@ -14,15 +14,15 @@ function Item() {
     price: number;
     description: string;
   } | null>(null);
-  const displaySize = useDisplaySize
+  
+  const displaySize = useDisplaySize();
   useEffect(() => {
     getRequest(`/products/${item_id}`, { params: { item_id } }).then((item) => {
       setItemViewed(item);
     });
-    
   }, [item_id]);
 
-  if (displaySize === null || itemViewed === null) {
+  if (displaySize[0] === null || itemViewed === null) {
     return <div>Loading...</div>;
   }
 
