@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CategoriesContext } from "../context/CategoriesContext";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 function Home() {
   const { categories } = useContext(CategoriesContext);
 
