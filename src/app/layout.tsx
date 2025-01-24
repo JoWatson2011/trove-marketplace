@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CategoriesProvider } from "../context/CategoriesContext";
 import { AuthProvider } from "../context/AuthContext.tsx";
 import Header from "../Components/Header.jsx";
@@ -17,12 +18,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div id="root">
-          <AuthProvider>
-            <CategoriesProvider>
-              <Header />
-              {children}
-            </CategoriesProvider>
-          </AuthProvider>
+          <Suspense>
+            <AuthProvider>
+              <CategoriesProvider>
+                <Header />
+                {children}
+              </CategoriesProvider>
+            </AuthProvider>
+          </Suspense>
         </div>
       </body>
     </html>
