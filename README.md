@@ -2,8 +2,6 @@
 
 ## 👷🏻‍♀️🔨 **This project is currently ongoing!**
 
-View the WIP here:
-[https://jowatson-portfolio-trove-marketplace.netlify.app](https://jowatson-portfolio-trove-marketplace.netlify.app)
 
 Inspired by similar platforms such as [depop](https://www.depop.com/gb/) and
 [vinted](https://www.vinted.co.uk), however I am exploring options to search by
