@@ -28,3 +28,5 @@ jo-todo.md
 .next
 next-env.d.ts
 dist
+# Local Netlify folder
+.netlify
