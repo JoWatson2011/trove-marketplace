@@ -6,10 +6,10 @@ function Home() {
 
   const router = useRouter();
   return (
-    <main>
-      <h2 className="mx-10 my-5  font-bold italic">SHOP BY CATEGORY</h2>
+    <main className="grid grid-cols-1">
+      <h2 className="mx-10 my-5 font-bold italic text-xl">SHOP BY CATEGORY</h2>
 
-      <nav className="flex flex-wrap justify-around">
+      <nav className="place-self-center grid grid-cols-2 grid-rows-2 md:grid-cols-4 md:grid-rows-1 place-items-center gap-[60px]">
         {categories.map((c) => {
           return (
             <button

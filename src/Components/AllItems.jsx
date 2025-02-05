@@ -1,11 +1,9 @@
-"use client"
+"use client";
 import { getRequest } from "../utils/api";
-import { useDisplaySize } from "../custom-hooks/useDisplaySize";
 import ItemCard from "./ItemCard";
 import { useEffect, useState, useContext } from "react";
 import { CategoriesContext } from "../context/CategoriesContext";
 import { useRouter, useSearchParams } from "next/navigation";
-
 
 function AllItems() {
   const [items, setItems] = useState([]);
@@ -13,19 +11,17 @@ function AllItems() {
   const [category, setCategory] = useState(useSearchParams().get("category"));
   const router = useRouter();
 
-  const displaySize = useDisplaySize();
-
   useEffect(() => {
     const itemsUrl = category
       ? `/products/category/${category.toLowerCase()}`
-      : "/products";  
+      : "/products";
     getRequest(itemsUrl).then((items) => {
       setItems(items);
     });
   }, [category]);
 
   return (
-    <main >
+    <main>
       <div className="flex justify-center">
         <label className="font-bold italic px-2" htmlFor="select-category">
           CATEGORY
@@ -42,7 +38,11 @@ function AllItems() {
           {categories.map((categoryOption) => {
             if (categoryOption === category)
               return (
-                <option value={categoryOption} defaultValue = {categoryOption} key = {categoryOption}>
+                <option
+                  value={categoryOption}
+                  defaultValue={categoryOption}
+                  key={categoryOption}
+                >
                   {categoryOption}
                 </option>
               );
@@ -57,14 +57,11 @@ function AllItems() {
       </div>
 
       <div
-        className={`${
-          displaySize[0] < 800
-            ? "grid grid-cols-1 justify-items-center"
-            : "flex flex-wrap justify-evenly"
-        }`}
+        className=
+        "grid grid-cols-1 justify-items-center md:grid-cols-2 gap-10"
       >
         {items.map((item) => {
-          return <ItemCard item={item} key={item.id}/>;
+          return <ItemCard item={item} key={item.id} />;
         })}
       </div>
     </main>
