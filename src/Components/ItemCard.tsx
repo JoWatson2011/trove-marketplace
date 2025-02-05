@@ -21,7 +21,7 @@ function ItemCard({
           width={286}
           height={180}
           alt={item.title}
-          unoptimized={false}
+          unoptimized={true}
           className="mb-3 border border-black rounded-xl h-[180px] object-contain"
         />
       </Link>
