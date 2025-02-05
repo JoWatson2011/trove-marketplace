@@ -6,7 +6,7 @@ export async function generateStaticParams() {
 
   return items.map(
     (item: {
-      id: number;
+      id: string;
       image: string;
       title: string;
       price: number;
@@ -16,6 +16,11 @@ export async function generateStaticParams() {
     })
   );
 }
-export default function Page() {
-  return <Item />;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  return <Item id={slug} />;
 }

@@ -1,5 +1,6 @@
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import Link from "next/link";
+import Image from "next/image";
 
 function ItemCard({
   item,
@@ -13,11 +14,15 @@ function ItemCard({
   };
 }) {
   return (
-    <div className="flex flex-col justify-center mx-1 my-1 w-[286px] h-[300px]  p-3">
+    <div className="flex flex-col justify-between mx-1 my-1 w-[286px] p-3">
       <Link href={`/items/${item.id}`}>
-        <img
+        <Image
           src={item.image}
-          className="justify-self-center w-[286px] h-[180px] object-contain mb-3 border border-black rounded-xl"
+          width={286}
+          height={180}
+          alt={item.title}
+          unoptimized={false}
+          className="mb-3 border border-black rounded-xl h-[180px] object-contain"
         />
       </Link>
       <section>
