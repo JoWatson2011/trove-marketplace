@@ -9,6 +9,7 @@ services:
     plan: free
     name: trove_marketplace
     runtime: python
+    rootDir: server
     buildCommand: "./build.sh"
     startCommand:
       "python -m gunicorn backend.asgi:application -k
