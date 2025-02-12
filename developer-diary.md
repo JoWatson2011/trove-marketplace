@@ -4,7 +4,7 @@ the elements were visible on the page. However, because I use a parametric
 endpoint that is accessed with React Router within the data fetching logic of
 this component, I couldn't render the component in isolation using Cypress.
 
-_22 Jan 20224_ Over several weeks I have been migrating the app to Next.js, so I
+_22 Jan 2025_ Over several weeks I have been migrating the app to Next.js, so I
 can 1. keep the server and app in one repo and 2. make use of the security/auth
 features that Next.js provides. First, I followed the instructions
 [here](https://nextjs.org/docs/app/building-your-application/upgrading/from-vite)
@@ -19,3 +19,5 @@ will be to fully implement user authorisation with `next-auth`.
 During the process, I have also started migrating the app to Typescript. The
 pages are all `.tsx` file, and I have migrated one of my existing components to
 `.tsx` also. I will continue to do this incrementally.
+
+_08 Feb 2025_ I added a django server and [hosted it on Render](https://trove-marketplace.onrender.com). I found the Render docs [here](https://render.com/docs/deploy-django) very helpful. So far it has only one endpoint at /api/healthcheck. I plan on implementing use rauthentication first.
