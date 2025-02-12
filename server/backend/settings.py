@@ -96,9 +96,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/trove-marketplace',
-        conn_max_age=600
+        default='postgresql://jowatson:password@localhost/trove_marketplace',
+        conn_max_age=600,
+        test_options={'NAME': 'trove_marketplace_test'}
     )
 }
 

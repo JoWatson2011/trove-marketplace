@@ -30,3 +30,7 @@ next-env.d.ts
 dist
 # Local Netlify folder
 .netlify
+
+# django
+__pycache__/
+staticfiles
