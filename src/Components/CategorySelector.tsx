@@ -26,7 +26,7 @@ function CategorySelector({
         id="select-category"
         onChange={(e) => {
           setCategory(e.target.value);
-          router.push(`/items?category=${e.target.value}`);
+          router.push(category ? `/items?category=${e.target.value}` : "/items");
         }}
         defaultValue={category}
       >
@@ -36,7 +36,6 @@ function CategorySelector({
             return (
               <option
                 value={categoryOption}
-                defaultValue={categoryOption}
                 key={categoryOption}
               >
                 {categoryOption}
