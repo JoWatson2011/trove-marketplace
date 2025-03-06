@@ -24,7 +24,7 @@ function AllItems() {
   return (
     <main>
       <CategorySelector category={category} setCategory={setCategory} />
-      <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 justify-items-center md:flex md:flex-wrap md:m-[30px] gap-10">
         {items.map((item) => {
           return <ItemCard item={item} key={item.id} />;
         })}
