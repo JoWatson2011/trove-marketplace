@@ -9,19 +9,22 @@ Inspired by similar platforms such as [depop](https://www.depop.com/gb/) and
 image, and suggest similar items based on image classification.
 
 ## 📝 To-do
+### Back-end:
+
+The back-end is a RESTful API built with django and PSQL. I am currently using the public api
+[http://fakestoreapi.com](http://fakestoreapi.com) as placeholder data on the
+front-end whilst this is being implemented.
 
 ### Front-end:
 
-[X] Custom hook for responsive display 
-[ ] Custom hook for for inputs 
-[ ] Createa new user account 
-[ ] User log in validation with [AuthO](https://auth0.com/blog/complete-guide-to-react-user-authentication/)
+[ ] Create new user account 
+
+[ ] View and add to basket
+
+[ ] Validate user session (https://nextjs.org/docs/app/building-your-application/authentication)
+
 [ ] Search bar
-[ ] Loading indicator when waiting on API [ ] View and add to basket
 
-### Back-end:
+[ ] Loading indicator when waiting on API 
 
-The back-end will be a RESTful API built with django and relying on an SQL
-database. I am currently using the public api
-[http://fakestoreapi.com](http://fakestoreapi.com) as placeholder data on the
-front-end.
+
