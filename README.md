@@ -15,6 +15,24 @@ The back-end is a RESTful API built with django and PSQL. I am currently using t
 [http://fakestoreapi.com](http://fakestoreapi.com) as placeholder data on the
 front-end whilst this is being implemented.
 
+[ ] Seed production database
+
+[ ] Implement user authentication with built-in django tools
+
+[ ] GET /items
+
+[ ] GET /items/:item_id
+
+[ ] POST /items
+
+[ ] GET /categories
+
+[ ] POST /category
+
+[ ] GET /user/basket
+
+[ ] PATCH /user/basket
+
 ### Front-end:
 
 [ ] Create new user account 
