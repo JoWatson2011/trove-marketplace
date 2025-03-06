@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { CategoriesProvider } from "../context/CategoriesContext";
 import { AuthProvider } from "../context/AuthContext.tsx";
 import Header from "../Components/Header.jsx";
+import "../output.css";
 
 export const metadata: Metadata = {
   title: "trove marketplace",
