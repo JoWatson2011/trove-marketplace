@@ -34,3 +34,7 @@ dist
 # django
 __pycache__/
 staticfiles
+# clerk configuration (can include secrets)
+/.clerk/
+
+cypress.env.json
