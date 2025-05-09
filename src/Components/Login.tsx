@@ -4,17 +4,17 @@ import { useContext, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ActionButton from "./ActionButton.tsx";
 import { logInRequest } from "../app/actions.ts";
-import { AuthContext } from "../context/AuthContext.tsx";
+// import { AuthContext } from "../context/AuthContext.tsx";
 
 function Login() {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [logInError, setLogInError] = useState("");
 
-  const authorised = useContext(AuthContext);
+  // const authorised = useContext(AuthContext);
 
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
 
   function handleGuestLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,9 +22,9 @@ function Login() {
 
     logInRequest("johnd", "m38rmF$")
       .then(() => {
-        authorised?.setIsAuthorised(true);
-        const callbackUrl = searchParams.get("callbackUrl") || "/";
-        router.push(callbackUrl);
+        // authorised?.setIsAuthorised(true);
+        // const callbackUrl = searchParams.get("callbackUrl") || "/";
+        // router.push(callbackUrl);
       })
       .catch(() => {
         setLogInError("Login error. Please try again later.");
@@ -37,9 +37,9 @@ function Login() {
 
     logInRequest(usernameInput, passwordInput)
       .then(() => {
-        authorised?.setIsAuthorised(true);
-        const callbackUrl = searchParams.get("callbackUrl") || "/";
-        router.push(callbackUrl);
+        // authorised?.setIsAuthorised(true);
+        // const callbackUrl = searchParams.get("callbackUrl") || "/";
+        // router.push(callbackUrl);
       })
       .catch(() => {
         setLogInError("Login error. Please try again later.");

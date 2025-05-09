@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { CategoriesProvider } from "../context/CategoriesContext";
-import { AuthProvider } from "../context/AuthContext.tsx";
+// import { AuthProvider } from "../context/AuthContext.tsx";
 import Header from "../Components/Header.jsx";
 import "../output.css";
-
+import { ClerkProvider } from "@clerk/nextjs";
 export const metadata: Metadata = {
   title: "trove marketplace",
   description: "buy and resell",
@@ -20,12 +20,12 @@ export default function RootLayout({
       <body>
         <div id="root">
           <Suspense>
-            <AuthProvider>
+            <ClerkProvider>
               <CategoriesProvider>
                 <Header />
                 {children}
               </CategoriesProvider>
-            </AuthProvider>
+            </ClerkProvider>
           </Suspense>
         </div>
       </body>

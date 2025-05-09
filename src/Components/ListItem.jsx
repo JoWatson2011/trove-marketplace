@@ -57,6 +57,7 @@ function ListItem() {
         <form
           onSubmit={handleListSubmit}
           className="flex flex-col  gap-y-[10px] mt-5"
+          data-cy="list-item-form"
         >
           <label htmlFor="item-name">Item Name</label>
           <input

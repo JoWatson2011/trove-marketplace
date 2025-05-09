@@ -1,15 +1,20 @@
 "use client";
 import Link from "next/link";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.tsx";
-
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { setUser, setToken } from "../app/actions";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignOutButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 function Header() {
-  const authorised = useContext(AuthContext);
-
   return (
     <header>
       <p className="text-slate-500 text-sm ">
@@ -24,27 +29,21 @@ function Header() {
       </p>
       <div className=" px-5">
         <nav className="flex justify-end text-[0.75rem] gap-x-5 text-slate-700 italic">
-          <p>Create Account</p>
-          {authorised.authorised ? (
-            <button
-              data-cy="logout-button"
-              onClick={() => {
-                authorised.setIsAuthorised(false);
-                setUser("");
-                setToken("");
-              }}
-              className="italic"
-            >
-              Logout
-            </button>
-          ) : (
-            <Link href="/login" data-cy="login-nav">
-              Login
-            </Link>
-          )}
-          {authorised.authorised ? (
-            <Link href="/my-account">My Account</Link>
-          ) : null}
+          <SignedOut>
+            <div data-cy="login-nav">
+              <SignInButton />
+              <SignUpButton />
+            </div>
+          </SignedOut>
+          <SignedIn>
+            <div className=" flex items-center gap-5 border border-black ">
+              <Link href="my-account" className=" text-lg">
+                My account
+              </Link>
+              <UserButton />
+              <SignOutButton/>
+            </div>
+          </SignedIn>
         </nav>
         <Link href="/">
           <h1 className="text-[70px] italic font-bold text-right hover:not-italic active:text-lime-700">

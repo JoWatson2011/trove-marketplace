@@ -21,3 +21,7 @@ pages are all `.tsx` file, and I have migrated one of my existing components to
 `.tsx` also. I will continue to do this incrementally.
 
 _08 Feb 2025_ I added a django server and [hosted it on Render](https://trove-marketplace.onrender.com). I found the Render docs [here](https://render.com/docs/deploy-django) very helpful. So far it has only one endpoint at /api/healthcheck. I plan on implementing use rauthentication first.
+
+_27th Feb 2025_ I have implemented user authentication with OAuth on the server. I heavily relied on [this tutorial](https://heymike.dev/articles/using-next-auth-with-django), which I highly reccommend. 
+
+_9th May 2025_ I struggled to connect the django auth to the front-end. In the meantime I have implemented Clerk so I can move onto other parts of the project.
